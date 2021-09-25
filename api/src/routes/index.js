@@ -9,4 +9,8 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 
-module.exports = router;
+module.exports = {
+    countries: require("./countries"),
+    activities: require("./activities"),
+    index: router
+};

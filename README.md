@@ -163,6 +163,9 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 - [ ] __POST /activity__:
   - Recibe los datos recolectados desde el formulario controlado de la ruta de creación de actividad turística por body
   - Crea una actividad turística en la base de datos
+  GET https://restcountries.com/v2/all
+GET https://restcountries.com/v2/name/{name}
+GET https://restcountries.com/v2/alpha/{code}
 
 
 #### Testing
