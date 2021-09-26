@@ -11,11 +11,11 @@ const country = {
 
 describe('Country routes', () => {
   before(() => conn.authenticate()
-  .catch((err) => {
-    console.error('Unable to connect to the database:', err);
-  }));
-  beforeEach(() => Country.sync({ force: true })
-    .then(() => Country.create(pokemon)));
+    .catch((err) => {
+      console.error('Unable to connect to the database:', err);
+    }));
+  beforeEach(() => Country.sync({ force: false })
+    .then(() => console.log("")));
   describe('GET /countries', () => {
     it('should get 200', () =>
       agent.get('/countries').expect(200)

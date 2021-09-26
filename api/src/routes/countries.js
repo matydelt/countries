@@ -5,7 +5,7 @@ const posts = require("../controllers/posts")
 
 const router = Router();
 router.post("/countries", function (req, res) {
-    posts.addToDb();
+    posts.addToDb(res);
 })
 
 router.get("/countries", async (req, res) => {

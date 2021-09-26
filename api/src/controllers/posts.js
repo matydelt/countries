@@ -2,7 +2,7 @@ const { Country } = require("../db.js");
 const axios = require('axios');
 const { TouristActivity } = require("../db")
 
-async function addToDb() {
+async function addToDb(res) {
     axios.get("https://restcountries.com/v2/all")
         .then(async function (response) {
             const data = response.data;
@@ -16,18 +16,18 @@ async function addToDb() {
                     await countr.save();
 
                 }
-                res.send("terminado")
+                return res.send("terminado")
             }
             res.status(500).send("No se pudo cargar en la base de datos")
         })
 }
 async function addActivity(req, res) {
     const { name, difficulty, duration, station, countryId } = req.body
-    const [touristActivity] = await TouristActivity.findOrCreate({ where: { name, difficulty, duration, station }, defaults: { name, difficulty, duration, station } });
+    const [touristActivity] = await TouristActivity.findOrCreate({ where: { name, difficulty, duration, station } });
     const id = countryId.toUpperCase()
     const country = await Country.findOne({ where: { id: id } });
     if (country)
-        country.setTouristActivity(touristActivity)
+        country.setTouristActivities(touristActivity)
     res.json(touristActivity)
 }
 

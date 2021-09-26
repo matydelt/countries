@@ -7,7 +7,7 @@ describe('Country model', () => {
       console.error('Unable to connect to the database:', err);
     }));
   describe('Validators', () => {
-    beforeEach(() => Country.sync({ force: true }));
+    beforeEach(() => Country.sync({ force: false }));
     describe('name', () => {
       it('should throw an error if name is null', (done) => {
         Country.create({})
