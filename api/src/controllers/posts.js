@@ -27,7 +27,7 @@ async function addActivity(req, res) {
     const id = countryId.toUpperCase()
     const country = await Country.findOne({ where: { id: id } });
     if (country)
-        country.setTouristActivities(touristActivity)
+        country.addTouristActivities(touristActivity)
     res.json(touristActivity)
 }
 
