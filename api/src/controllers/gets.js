@@ -1,4 +1,4 @@
-const { Country } = require("../db.js");
+const { Country, TouristActivity } = require("../db.js");
 const { Op } = require("sequelize")
 
 
@@ -22,8 +22,24 @@ async function getById(id, res) {
         return res.json(country)
     res.status(404).send("no se encontro dicho pais")
 }
+async function getActAll_Query(name, res) {
+    if (name) {
+        const activity = await TouristActivity.findOne({ where: { name: name.toLowerCase() } })
+
+        if (activity)
+            return res.json(activity)
+        res.status(404).send("no se encontro la actividad")
+    }
+    else {
+        const activities = await TouristActivity.findAll({});
+        if (activities)
+            return res.json(activities)
+        res.sendStatus(500)
+    }
+}
 
 module.exports = {
     getAll_Query,
-    getById
+    getById,
+    getActAll_Query
 }
