@@ -1,4 +1,4 @@
-const { Country, TouristActivity } = require("../db.js");
+const { Country, TouristActivity, Activities } = require("../db.js");
 const { Op } = require("sequelize")
 
 
@@ -23,11 +23,19 @@ async function getById(id, res) {
     res.status(404).send("no se encontro dicho pais")
 }
 async function getActAll_Query(name, res) {
+    console.log(name.toString())
     if (name) {
-        const activity = await TouristActivity.findOne({ where: { name: name.toLowerCase() } })
-
-        if (activity)
+        let activity = await TouristActivity.findAll({ where: { name: name.toLowerCase() } })
+        if (activity.length > 0)
             return res.json(activity)
+        else {
+            activity = await TouristActivity.findByPk(name)
+            if (activity) {
+                activity = { name: activity.name, difficulty: activity.difficulty, duration: activity.duration, station: activity.station }
+                return res.json(activity)
+            }
+            res.status(404).send("no se encontro la actividad")
+        }
         res.status(404).send("no se encontro la actividad")
     }
     else {
@@ -37,9 +45,29 @@ async function getActAll_Query(name, res) {
         res.sendStatus(500)
     }
 }
+async function getActivities(id, res) {
+    if (id) {
+        let act = await Activities.findAll({ where: { countryId: { [Op.iLike]: `%${id}%` } } })
+        if (act.length > 0)
+            return res.json(act)// devuelve arreglo de actividades(link activity to country) buscado por countryId
+        else {
+            console.log(id)
+            act = await Activities.findAll({ where: { touristActivityId: id } })
+            if (act.length > 0)
+                return res.json(act)// devuelve arreglo de actividades(link activity to country) buscado por activityId
+            return res.sendStatus(404);
+        }
+    } else {
+        let act = await Activities.findAll({})
+        if (act)
+            return res.json(act)
+        return res.sendStatus(404);
+    }
+}
 
 module.exports = {
     getAll_Query,
     getById,
-    getActAll_Query
+    getActAll_Query,
+    getActivities
 }

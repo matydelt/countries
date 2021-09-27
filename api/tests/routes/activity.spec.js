@@ -12,17 +12,28 @@ const activity = {
   station: "Verano",
   countryId: "ARG"
 };
+describe("activities", function () {
 
-describe('Activity route', () => {
-  before(() => conn.authenticate()
-    .catch((err) => {
-      console.error('Unable to connect to the database:', err);
-    }));
-  beforeEach(() => TouristActivity.sync({ force: false })
-    .then(() => TouristActivity.create(activity)));
-  describe('POST /activity', () => {
-    it('should get 200', () =>
-      agent.get('/activity').expect(200)
-    );
+})
+describe('POST /activity', function () {
+  it('responde con 302', function () {
+    return agent.post('/activity')
+      .send(activity)
+      .expect(302);
+  });
+  it('crea una actividad en la base de datos', function () {
+    return agent.post('/activity')
+      .send(activity)
+      .then(() => {
+        return TouristActivity.findOne({
+          where: {
+            name: 'rafting'
+          }
+        });
+      })
+      .then(act => {
+        expect(act).to.exist;
+      });
   });
 });
+

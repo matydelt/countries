@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 
 module.exports = (sequelize) => {
-    const TouristActivity = sequelize.define('touristActivity', {
+    const Touristactivity = sequelize.define('touristActivity', {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
