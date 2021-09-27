@@ -12,9 +12,10 @@ const activity = {
   station: "Verano",
   countryId: "ARG"
 };
-describe("activities", function () {
-
-})
+const activityFake = {
+  name: "fake activity",
+  difficulty: "3"
+};
 describe('POST /activity', function () {
   it('responde con 302', function () {
     return agent.post('/activity')
@@ -31,8 +32,22 @@ describe('POST /activity', function () {
           }
         });
       })
-      .then(act => {
+      .then((act) => {
         expect(act).to.exist;
+      });
+  });
+  it('no crea la actividad si no se pasan bien los datos', function () {
+    return agent.post('/activity')
+      .send(activityFake)
+      .then(() => {
+        return TouristActivity.findOne({
+          where: {
+            name: 'fake activity'
+          }
+        });
+      })
+      .then(() => {
+        expect(500);
       });
   });
 });

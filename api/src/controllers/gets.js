@@ -51,7 +51,6 @@ async function getActivities(id, res) {
         if (act.length > 0)
             return res.json(act)// devuelve arreglo de actividades(link activity to country) buscado por countryId
         else {
-            console.log(id)
             act = await Activities.findAll({ where: { touristActivityId: id } })
             if (act.length > 0)
                 return res.json(act)// devuelve arreglo de actividades(link activity to country) buscado por activityId
