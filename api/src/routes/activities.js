@@ -8,12 +8,8 @@ const router = Router();
 router.post("/activity", async function (req, res) {
     post.addActivity(req, res)
 })
-router.get("/activity", async function (req, res) {
-    get.getActAll_Query(req.query.name, res);
-})
-router.get("/activities", async function (req, res) {
-    get.getActivities(req.query.id, res);
-})
+
+
 
 
 module.exports = router; 
