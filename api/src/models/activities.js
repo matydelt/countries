@@ -4,7 +4,7 @@ const { DataTypes } = require('sequelize');
 const touristActivity = require('./touristActivity');
 const Country = require("./Country")
 module.exports = (sequelize) => {
-    const Activities = sequelize.define("Activities", {
+    const Activities = sequelize.define("activities", {
         countryId: {
             type: DataTypes.STRING(3),
             references: {

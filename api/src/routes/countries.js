@@ -1,12 +1,9 @@
 const { Router } = require('express');
 const gets = require("../controllers/gets")
-const posts = require("../controllers/posts")
 
 
 const router = Router();
-router.post("/countries", function (req, res) {
-    posts.addToDb(res);
-})
+
 
 router.get("/countries", async (req, res) => {
     const { name } = req.query;

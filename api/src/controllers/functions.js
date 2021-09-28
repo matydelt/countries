@@ -1,5 +1,6 @@
-const { TouristActivity, Activities } = require("../db.js");
+const { TouristActivity, Activities, Country } = require("../db.js");
 const { Op } = require("sequelize")
+const axios = require('axios');
 function removeDuplicates(originalArray, prop) {
     var newArray = [];
     var lookupObject = {};
@@ -34,7 +35,32 @@ async function getAct(id) {
         return activity.dataValues
     }
 }
+async function addToDb(res) {
+    axios.get("https://restcountries.com/v2/all")
+        .then(async function (response) {
+            const data = response.data;
+            if (response) {
+                for (let i = 0; i < response.data.length; i++) {
+                    if (data[i]["capital"] && data[i].hasOwnProperty("capital")) {
+                        let countr = Country.build({
+                            name: data[i].name, id: data[i].alpha3Code, nationalFlag: data[i].flags.png,
+                            continent: data[i].region, capital: data[i]["capital"],
+                            subRegion: data[i].subregion, area: data[i]["area"], population: data[i].population
+                        })
+                        await countr.save();
+                    }
+                }
+                const countries = await Country.findAll({
+                    where: {}, attributes: ["id", "name", "capital", "continent",
+                        "nationalFlag", "subRegion", "area", "population"]
+                });
+                return res.send(countries)
+            }
+            res.status(500).send("No se pudo cargar en la base de datos")
+        })
+}
 module.exports = {
+    addToDb,
     removeDuplicates,
     getActivities,
     getAct

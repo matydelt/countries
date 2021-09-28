@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const post = require("../controllers/posts")
-const get = require("../controllers/gets")
 
 
 const router = Router();
