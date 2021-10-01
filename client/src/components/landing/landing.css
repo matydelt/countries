@@ -1,0 +1,21 @@
+.landing{
+    background:url("https://i.ibb.co/f2pTY1n/countries.png");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+ 
+}
+button{
+    position: relative;
+    background-color: crimson;
+    border-radius: 10px;
+    height: 5%;
+    width: 10%;
+    color: white;
+    font-size: larger;
+    border-color: rgb(197, 18, 54);
+}
