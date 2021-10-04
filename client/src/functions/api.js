@@ -13,6 +13,30 @@ export function getById(id) {
 
     )
 }
+// export const pagination = (arr, nArr = []) => {
+//     arr = arr.data;
+//     let i = 0, flag = 0, max = 9;
+//     let aux = [];
+//     while (i < arr.length) {
+//         aux = [];
+//         for (var k = 0; k < max; k++) {
+//             if (flag === 0) {
+//                 aux.push(arr[i]);
+//             }
+//             else {
+//                 aux.push(arr[i]);
+//             }
+//             i++;
+//             if (i >= arr.length) break;
+//         }
+//         if (flag === 0 && k === max) {
+//             max++
+//             flag = 1
+//         }
+//         nArr.push(aux)
+//     }
+//     return nArr;
+// }
 // export function allCountries(setCountries) {
 //     axios.get(`http://localhost:3001/countries`) // llamo a mi api y le pido todos los paises
 //         .then((recurso) => {

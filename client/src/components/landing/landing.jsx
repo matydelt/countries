@@ -8,7 +8,7 @@ export default function Landing() {
 
   return (
     <div className="landing">
-      <Link to='/home'>
+      <Link to='/home/!#'>
         <button className="thar-three" >Ingresar</button>
       </Link>  
     </div>

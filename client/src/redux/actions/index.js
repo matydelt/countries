@@ -5,9 +5,11 @@ export const COUNTRYDETAIL = 'GET_COUNTRY';
 export const getCountries = () => {
     return async function (dispatch, getState) {
         var result = await getAll()
+        // result = pagination(result);
+        result = result.data
         dispatch({
             type: COUNTRIES,
-            payload: result.data
+            payload: result
         })
     }
 

@@ -36,23 +36,28 @@ async function getAct(id) {
     }
 }
 async function addToDb(res) {
-    axios.get("https://restcountries.com/v2/all")
+    axios.get('https://restcountries.com/v3/all')
         .then(async function (response) {
             const data = response.data;
+            console.log(data[0].name)
             if (response) {
                 for (let i = 0; i < response.data.length; i++) {
                     if (data[i]["capital"] && data[i].hasOwnProperty("capital")) {
                         let countr = Country.build({
-                            name: data[i].name, id: data[i].alpha3Code, nationalFlag: data[i].flags.png,
-                            continent: data[i].region, capital: data[i]["capital"],
-                            subRegion: data[i].subregion, area: data[i]["area"], population: data[i].population
+                            name: data[i].name.common,
+                            id: data[i].cca3,
+                            nationalFlag: data[i].flags.find(e => e.includes('png')),
+                            continent: data[i].region,
+                            capital: data[i].capital[0],
+                            subRegion: data[i].subregion,
+                            area: data[i]["area"]
                         })
                         await countr.save();
                     }
                 }
                 const countries = await Country.findAll({
                     where: {}, attributes: ["id", "name", "capital", "continent",
-                        "nationalFlag", "subRegion", "area", "population"]
+                        "nationalFlag", "subRegion", "area"]
                 });
                 return res.send(countries)
             }

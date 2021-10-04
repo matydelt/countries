@@ -1,6 +1,7 @@
 import { COUNTRIES, ADDACTIVITY, COUNTRYDETAIL } from "../actions"
 const initialState = {
-    countriesLoaded: []
+    countriesLoaded: [],
+
 };
 
 function rootReducer(state = initialState, action) {

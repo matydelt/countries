@@ -1,0 +1,7 @@
+.pagination{
+    display: flex;
+    flex-direction: row;
+}
+.page{
+    margin: 3px;
+}

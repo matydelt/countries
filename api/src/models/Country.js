@@ -26,16 +26,13 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     subRegion: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.STRING
+
     },
     area: {
-      type: DataTypes.FLOAT
-    },
-    population: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.FLOAT,
       allowNull: false
-    }
+    },
   });
 
 };

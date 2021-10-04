@@ -8,7 +8,7 @@ async function getAll_Query(name, res) {
     if (name) {
         const country = await Country.findAll({
             where: { name: { [Op.iLike]: `%${name}%` } }, attributes: ["id", "name", "capital", "continent",
-                "nationalFlag", "subRegion", "area", "population"]
+                "nationalFlag", "subRegion", "area"]
         });
         if (country.length > 0)
             return res.json(country)
@@ -17,7 +17,7 @@ async function getAll_Query(name, res) {
     else {
         const countries = await Country.findAll({
             where: {}, attributes: ["id", "name", "capital", "continent",
-                "nationalFlag", "subRegion", "area", "population"]
+                "nationalFlag", "subRegion", "area"]
         });
         if (countries[0]) {
             return res.json(countries)

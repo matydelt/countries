@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Route path="/" exact render={() => (<Landing />)} />
-      <Route path="/home" exact render={() => (<Home filterOrderName={filterOrderName} filterOrderPopulation={filterOrderPopulation} getCountries={getCountries} />)} />
+      <Route path="/home" strict render={() => (<Home filterOrderName={filterOrderName} filterOrderPopulation={filterOrderPopulation} getCountries={getCountries} />)} />
     </div>
   );
 }

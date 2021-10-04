@@ -1,0 +1,17 @@
+.principal{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.columnLeft{
+  background-color: bisque;
+  width: 25%;
+  height: 100%;
+
+}
+.columnRigth{
+    background-color: bisque;
+    width: 25%;
+    height: 100%;
+    left:75%
+}
