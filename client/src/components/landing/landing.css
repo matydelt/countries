@@ -9,7 +9,7 @@
     height: 100%;
  
 }
-button{
+.btn{
     position: relative;
     background-color: crimson;
     border-radius: 10px;

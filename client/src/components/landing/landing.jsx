@@ -9,7 +9,7 @@ export default function Landing() {
   return (
     <div className="landing">
       <Link to='/home/!#'>
-        <button className="thar-three" >Ingresar</button>
+        <button className="btn" >Ingresar</button>
       </Link>  
     </div>
   );

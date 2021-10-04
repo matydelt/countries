@@ -1,4 +1,5 @@
 import { getById, getAll } from "../../functions/api"
+import { filterOrderArea, filterOrderName } from "../../functions/filters";
 export const COUNTRIES = 'GET_COUNTRIES';
 export const ADDACTIVITY = 'ADD_ACTIVITY';
 export const COUNTRYDETAIL = 'GET_COUNTRY';
@@ -13,6 +14,28 @@ export const getCountries = () => {
         })
     }
 
+}
+export const setOrderCountriesByName = (flag) => {
+    return async function (dispatch, getState) {
+        let countries = await getAll()
+        filterOrderName(countries.data, flag)
+        countries = countries.data
+        dispatch({
+            type: COUNTRIES,
+            payload: countries
+        })
+    }
+}
+export const setOrderCountriesByArea = (flag) => {
+    return async function (dispatch, getState) {
+        let countries = await getAll()
+        filterOrderArea(countries.data, flag)
+        countries = countries.data
+        dispatch({
+            type: COUNTRIES,
+            payload: countries
+        })
+    }
 }
 export function addActivity(payload) {
     return { type: ADDACTIVITY, payload };

@@ -4,8 +4,7 @@ import "./pagination.css"
 const Pagination = ({ countriesPerPage, totalCountries, paginate }) => {
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalCountries / countriesPerPage); i++) {
-    
+  for (let i = 1; i <= Math.ceil(totalCountries / countriesPerPage); i++) {    
     pageNumbers.push(i);
   }
 

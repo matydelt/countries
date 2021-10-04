@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Cards from '../cards/cards';
 import './home.css';
 import Pagination from '../pagination/pagination';
+import Nav from '../nav/nav';
 // import { Link } from 'react-router-dom';
 import { getCountries } from '../../redux/actions';
 
@@ -17,7 +18,6 @@ export function Home({ getCountries, countries }) {
   },[getCountries])
   if(countries.length<=0) return <h2>Loading...</h2>;  
   
-  
   const indexOfLastPost= currentPage * countriesPerPage;
   const indexOfFirstPost = indexOfLastPost - countriesPerPage;
   let currentCountries
@@ -27,12 +27,11 @@ export function Home({ getCountries, countries }) {
     currentCountries = countries.slice(indexOfFirstPost-1, indexOfLastPost-1);
   }
   const paginate = countryNumber => setCurrentPage(countryNumber);
-  console.log(currentCountries.length)
  
   return (
     <div className="principal">
       <div className="columnLeft"></div>
-      <button>Ordenar por poblacion</button>
+      <Nav />
       <Cards countries={currentCountries}  />
       <Pagination
         countriesPerPage={countriesPerPage}
