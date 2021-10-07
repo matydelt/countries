@@ -4,4 +4,15 @@
 }
 .page{
     margin: 3px;
+    font-size:small;
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(255, 238, 0);
+    border-radius:100%;
+    border: 1px solid black;
+    font-family:Arial, Helvetica, sans-serif;
+  
+}
+a{
+    text-decoration: none;
 }

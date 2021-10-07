@@ -1,4 +1,4 @@
-const { Country, Activity, Activities } = require("../db.js");
+const { Country, TouristActivity, Activities } = require("../db.js");
 const { Op } = require("sequelize")
 const func = require("./functions");
 
@@ -8,7 +8,7 @@ async function getAll_Query(name, res) {
     if (name) {
         const country = await Country.findAll({
             where: { name: { [Op.iLike]: `%${name}%` } }, attributes: ["id", "name", "capital", "continent",
-                "nationalFlag", "subRegion", "area"]
+                "nationalFlag", "subRegion", "area"],
         });
         if (country.length > 0)
             return res.json(country)
@@ -17,7 +17,7 @@ async function getAll_Query(name, res) {
     else {
         const countries = await Country.findAll({
             where: {}, attributes: ["id", "name", "capital", "continent",
-                "nationalFlag", "subRegion", "area"]
+                "nationalFlag", "subRegion", "area"], include: TouristActivity
         });
         if (countries[0]) {
             return res.json(countries)
@@ -31,7 +31,7 @@ async function getById(id, res) {
     let activities = [];
     let country = await Country.findOne({
         where: { id: id.toUpperCase() }, attributes: ["id", "name", "capital", "continent",
-            "nationalFlag", "subRegion", "area", "population"]
+            "nationalFlag", "subRegion", "area"]
     })
     if (country && activitiesId) {
         country = country.dataValues
@@ -49,12 +49,18 @@ async function getById(id, res) {
         return res.json(country)
     }
     return res.status(404).send("no se encontro dicho pais")
-    return res.json(country)
 }
+async function getActivities(res) {
+    let act = await TouristActivity.findAll({ where: {}, attributes: ["id", "name", "difficulty", "duration", "station"], include: Country })
+    if (act)
+        return res.json(act)
+    return res.sendStatus(404)
 
+}
 
 
 module.exports = {
     getAll_Query,
     getById,
+    getActivities
 }

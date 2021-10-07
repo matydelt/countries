@@ -6,3 +6,19 @@
     width: 30%;
     height: 40%;
 }
+.select-nav{
+    appearance:inherit;
+}
+.input-nav{
+    width: 50%;
+    height: 2.3rem;
+    font-size: large;
+    
+    
+}
+.div-nav{
+    width: 50%;
+    background-color:yellow;
+    border-radius: 20px;
+    border: 1px solid black;    
+}

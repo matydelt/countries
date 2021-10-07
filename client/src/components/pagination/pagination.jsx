@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import "./pagination.css"
 
 const Pagination = ({ countriesPerPage, totalCountries, paginate }) => {
@@ -13,11 +14,12 @@ const Pagination = ({ countriesPerPage, totalCountries, paginate }) => {
    
       <div className='pagination'>
         {pageNumbers.map(number => (
-          <div key={number} className='page'>
-            <a onClick={() => paginate(number)} href='/home/!#' className='page-link'>
-              {number}
-            </a>
+            <Link key={number} to="/home/!#">
+          <div className='page' onClick={() => paginate(number)} >
+            <p>{number}</p>
+            
           </div>
+            </Link>
         ))}
       </div>
     

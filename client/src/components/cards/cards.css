@@ -1,12 +1,14 @@
 .card{
     border: 1px solid black;
-    width: 50%;
-    margin: none;
-
+    width: 30%;
+    height: 16rem;
+    margin: 3px;
+    background-color: rgb(205, 208, 211);
 }
 .cards{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    width: 50%;
+    /* width: 90%; */
+    height: 40rem;
 }

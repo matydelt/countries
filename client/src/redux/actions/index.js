@@ -1,60 +1,25 @@
-import { getById, getAll } from "../../functions/api"
-import { filterOrderArea, filterOrderName } from "../../functions/filters";
+import { getAll, getActivities } from "../../functions/api"
 export const COUNTRIES = 'GET_COUNTRIES';
-export const ADDACTIVITY = 'ADD_ACTIVITY';
-export const COUNTRYDETAIL = 'GET_COUNTRY';
+export const ACTIVITIES = 'GET_ACTIVITIES';
+export const COUNTRYID = "SET_COUNTRYID"
+// export const COUNTRYDETAIL = 'GET_COUNTRY';
 export const getCountries = () => {
-    return async function (dispatch, getState) {
+    return async function (dispatch) {
         var result = await getAll()
-        // result = pagination(result);
+        var act = await getActivities()
         result = result.data
         dispatch({
             type: COUNTRIES,
             payload: result
         })
-    }
-
-}
-export const setOrderCountriesByName = (flag) => {
-    return async function (dispatch, getState) {
-        let countries = await getAll()
-        filterOrderName(countries.data, flag)
-        countries = countries.data
         dispatch({
-            type: COUNTRIES,
-            payload: countries
+            type: ACTIVITIES,
+            payload: act.data
         })
     }
 }
-export const setOrderCountriesByArea = (flag) => {
-    return async function (dispatch, getState) {
-        let countries = await getAll()
-        filterOrderArea(countries.data, flag)
-        countries = countries.data
-        dispatch({
-            type: COUNTRIES,
-            payload: countries
-        })
-    }
-}
-export function addActivity(payload) {
-    return { type: ADDACTIVITY, payload };
-}
-export function getCountryDetails(id) {
-    return function (dispatch) {
-        getById(id)
-            .then(json => {
 
-                dispatch({
-                    type: COUNTRYDETAIL,
-                    payload: json
-                })
-            })
-    }
-}
-export function removeMovieFavorite(idMovie) {
-    return {
-        type: 'REMOVE_MOVIE_FAVORITE',
-        payload: idMovie,
-    }
-}
+
+
+
+

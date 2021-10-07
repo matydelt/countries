@@ -3,9 +3,10 @@ const axios = require("axios")
 export function getAll() {
     const res = axios.get(`http://localhost:3001/countries`)  // llamo a mi api y le pido todos los paises
     return res
-
-
-
+}
+export function getActivities() {
+    const res = axios.get(`http://localhost:3001/activities`)  // llamo a mi api y le pido todos los paises
+    return res
 }
 export function getById(id) {
     return (
