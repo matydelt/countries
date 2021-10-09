@@ -1,7 +1,7 @@
 .card{
     border: 1px solid black;
     width: 30%;
-    height: 16rem;
+    height: 20rem;
     margin: 3px;
     background-color: rgb(205, 208, 211);
 }
@@ -11,4 +11,5 @@
     align-items: center;
     /* width: 90%; */
     height: 40rem;
+    
 }

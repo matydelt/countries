@@ -15,7 +15,7 @@ const [clearAll,setClearAll]= useState(0);
 
 useEffect(() => {
   getCountries()  
-},[clearAll])
+},[clearAll, getCountries])
 
 
 if(countries.length<=0) {

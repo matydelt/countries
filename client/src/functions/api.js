@@ -8,11 +8,13 @@ export function getActivities() {
     const res = axios.get(`http://localhost:3001/activities`)  // llamo a mi api y le pido todos los paises
     return res
 }
-export function getById(id) {
-    return (
-        axios.get(`http://localhost:3001/countries/${id}`) // llamo a mi api y le pido el pais con id
-
-    )
+export async function getById(id) {
+    const country = await axios.get(`http://localhost:3001/countries/${id}`) // llamo a mi api y le pido el pais con id
+    return country.data;
+}
+export function postAct(activity) {
+    // axios.post(`http://localhost:3001/activity`).send(activity)
+    console.log(activity)
 }
 // export const pagination = (arr, nArr = []) => {
 //     arr = arr.data;

@@ -3,6 +3,7 @@ import { COUNTRIES } from "../../redux/actions";
 import { connect, useDispatch } from "react-redux";
 import { filterByCOA, filterOrderName, filterOrderArea,filterByAct } from "../../functions/filters";
 import "./nav.css";
+import { Link } from "react-router-dom";
 
 export const Nav = (props) => {
     const dispatch = useDispatch();
@@ -64,6 +65,9 @@ export const Nav = (props) => {
     }    
     return (
         <div className="div-nav">
+            <Link to="/activity">
+            <button>Crear actividad</button>
+            </Link>
             <button onClick={handleOnClickAreaAs}>ordered by area ↥</button>
             <button onClick={handleOnClickAreaDes}>ordered by area ↧</button>
             <button onClick={handleOnClickAToZ}>A-Z</button>
@@ -71,7 +75,7 @@ export const Nav = (props) => {
             <button onClick={()=>props.a(props.b+1)}>Clear All</button>
             <div>
 
-            <img  src="https://i.ibb.co/QHLJ2CL/logoOG.png" width="20%" height="20%"/>
+            <img  src="https://i.ibb.co/QHLJ2CL/logoOG.png" width="20%" height="20%" alt=""/>
             <h2>Henry Countries</h2>
             </div>
             

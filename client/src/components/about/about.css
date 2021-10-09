@@ -1,0 +1,22 @@
+.card-about{
+    background-color: dimgrey;
+    align-items: center;
+    width: 70%;
+    /* height: 70%; */
+    margin: auto;
+    mix-blend-mode: hard-light;
+    color: yellow;
+    margin-top: 7%;
+}
+.div-act{
+    display: inline-flex;
+}
+.card-act{
+    margin: 5px;
+    align-items: center;
+}
+.img-about{
+    margin-top: 3px;
+   border-radius: 10px;
+   width: 8%;
+}

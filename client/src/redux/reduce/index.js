@@ -1,9 +1,8 @@
-import { COUNTRIES, ACTIVITIES } from "../actions"
+import { COUNTRIES, ACTIVITIES, COUNTRY } from "../actions"
 const initialState = {
     countriesLoaded: [],
     activitiesLoaded: [],
-    countryId: ""
-
+    country: ""
 };
 
 function rootReducer(state = initialState, action) {
@@ -18,12 +17,11 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 activitiesLoaded: action.payload
             }
-
-        // case COUNTRIESO:
-        //     return {
-        //         ...state,
-        //         countriesOrdered: action.payload
-        //     }
+        case COUNTRY:
+            return {
+                ...state,
+                country: action.payload
+            }
 
 
         default:

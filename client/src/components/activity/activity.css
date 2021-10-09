@@ -1,0 +1,39 @@
+.div-Form{
+    background-color: dimgrey;
+    margin: 2rem;
+    display: table-caption;
+    mix-blend-mode: hard-light;
+    color: yellow;
+}
+.inp{
+    height: 30px;
+}
+.div-inp{
+    margin: 5px;
+}
+.btn-form{
+    color: black;
+    background-color: yellow;
+    border: none;
+    border-radius: 5%;
+    width: 4rem;
+    height: 2rem;
+    margin: 4px;
+}
+.img-form{
+   margin-top: 3px;
+   border-radius: 10px;
+   width: 34%;
+   /* height: 33%; */
+
+}
+.form{
+    display: flex;
+    flex-direction: row;
+    inline-size: min-content;
+}
+.act{
+    background-color: dimgrey;
+    mix-blend-mode: hard-light;
+    color: yellow;
+}
