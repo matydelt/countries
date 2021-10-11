@@ -2,7 +2,7 @@ import { getAll, getActivities, getById, postAct } from "../../functions/api"
 export const COUNTRIES = 'GET_COUNTRIES';
 export const ACTIVITIES = 'GET_ACTIVITIES';
 export const COUNTRY = "GET_COUNTRY";
-// export const COUNTRYDETAIL = 'GET_COUNTRY';
+
 export const getCountries = () => {
     return async function (dispatch) {
         var result = await getAll()
@@ -29,16 +29,11 @@ export const getCountry = (id) => {
 
 }
 export const postActivity = ({ countries, name, station, duration, difficulty }) => {
-    let activity = { name: name, station: station, duration: duration, difficulty: difficulty, countryId: countries }
+    let activity = { name: name, difficulty: difficulty, duration: duration, station: station, countryId: countries }
     return async function (dispatch) {
-        if (countries && name && station && duration && difficulty) {
-            dispatch(postAct(activity))
-        }
-        else {
-            alert("faltaron parametros")
-        }
+        let action = await postAct(activity)
+        dispatch(action)
     }
-
 }
 
 

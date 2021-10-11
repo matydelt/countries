@@ -1,21 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { COUNTRIES } from "../../redux/actions";
 import { connect, useDispatch } from "react-redux";
-import { filterByCOA, filterOrderName, filterOrderArea,filterByAct } from "../../functions/filters";
+import { filterByC, filterOrderName, filterOrderArea,filterByAct } from "../../functions/filters";
 import "./nav.css";
 import { Link } from "react-router-dom";
 
 export const Nav = (props) => {
+   const [flag, setFlag] = useState(0)
     const dispatch = useDispatch();
     let order = false
     let orderByArea = false
-    const handleSubmitAct = (e)=>{  
+    const handleSubmitAct = (e)=>{ 
+        setFlag(1) 
         filterByAct(e.target.value,props.countries,props.activities,dispatch)        
     }
     const  handleSubmit =async (e) => {
         e.preventDefault()
         let countries = [];        
-        countries = await filterByCOA(props.countries, e.target.value) 
+        countries = await filterByC(props.countries, e.target.value,flag) 
             dispatch({
                 type: COUNTRIES,
                 payload: countries
@@ -72,7 +74,7 @@ export const Nav = (props) => {
             <button onClick={handleOnClickAreaDes}>ordered by area ↧</button>
             <button onClick={handleOnClickAToZ}>A-Z</button>
             <button onClick={handleOnClickZToA}>Z-A</button>
-            <button onClick={()=>props.a(props.b+1)}>Clear All</button>
+            <button onClick={()=>props.a(props.b+1,setFlag(0))}>Clear All</button>
             <div>
 
             <img  src="https://i.ibb.co/QHLJ2CL/logoOG.png" width="20%" height="20%" alt=""/>

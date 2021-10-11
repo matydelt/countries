@@ -8,16 +8,14 @@ import { Link } from 'react-router-dom';
 import { getCountry } from "../../redux/actions";
 import "./about.css"
 
-export const About =  (props) => {
-
+export const About =  ({getCountry,country}) => {
     const param = useParams();
     let id= param.id;
    
     useEffect(()=>{
-        props.getCountry(id)
-    },[id, props])
-    // console.log(props)
-    let country = props.country
+        getCountry(id)
+    },[getCountry, id])
+    
 if(!country)return <h2>loading...</h2>
   return (
     <div className="card-about" key={country.id}>
@@ -30,7 +28,7 @@ if(!country)return <h2>loading...</h2>
       <h4>{country.area}km2</h4>
       <div className="div-act">
       {country.activities?.map((e)=>{return (
-          <div className="card-act"> 
+          <div key={e.id} className="card-act"> 
               <h1>{e.name}</h1>
               <h2>dificultad: {e.difficulty}</h2>
               <h3>{e.duration}</h3>

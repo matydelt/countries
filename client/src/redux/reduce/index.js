@@ -23,7 +23,6 @@ function rootReducer(state = initialState, action) {
                 country: action.payload
             }
 
-
         default:
             return { ...state }
     }

@@ -4,17 +4,12 @@ import { connect, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCountries,postActivity } from "../../redux/actions";
 import "./activity.css";
+import { postAct } from "../../functions/api";
 
 
 const Activity = ({getCountries,postActivity}) => {
   const countries = useSelector(state=> state.countriesLoaded)
 //   console.log(props)
-  const [errors, setErrors] = useState({
-    name: "",
-  difficulty: "",
-  station: "",
-  duration: "",
-  countries: []});
   const [input, setInput] = useState({
     name: "",
     difficulty: "",
@@ -29,14 +24,12 @@ const Activity = ({getCountries,postActivity}) => {
   },[countries.length, getCountries])
   const handleChangeName = (e) => {
     const newInput = { ...input, [e.target.name]: e.target.value };
-    setErrors(validate(newInput));
     setInput(newInput);
   };
 
   const handleChangeDifficulty = (e) => {
       
       const newInput = { ...input, [e.target.name]: e.target.value };
-      setErrors(validate(newInput));
       // eslint-disable-next-line no-mixed-operators
       if(e.target.value>5 && e.target.value!==""||e.target.value<1&&e.target.value!=="")alert("solo se aceptan valores de 1 a 5")
       else{
@@ -46,18 +39,15 @@ const Activity = ({getCountries,postActivity}) => {
   };
   const handleChangeStation = (e) => {
     const newInput = { ...input, [e.target.name]: e.target.value };
-    setErrors(validate(newInput));
     setInput(newInput);
   };
   const handleChangeDuration = (e) => {
     const newInput = { ...input, [e.target.name]: e.target.value };
-    setErrors(validate(newInput));
     setInput(newInput);
   };
   const handleChangeCountry = (e) => {
       if(e.target.value!=="eliga un pais"){
     const newInput = { ...input, [e.target.name]: input.countries.push(e.target.value)};
-    setErrors(validate(newInput));
     setInput(newInput);}
   };
   const handleClick = (e) => {
@@ -66,12 +56,11 @@ const Activity = ({getCountries,postActivity}) => {
 };
   const handleSubmit = (e) => {
       e.preventDefault()
-      if(input.station==="verano"||input.station==="otoño"||input.station==="primavera"||input.station==="invierno"){
+      if(input.station==="Verano"||input.station==="Otoño"||input.station==="Primavera"||input.station==="Invierno"){
         if(input.duration){
           if(input.countries.length>0){
             if(input.name.length>2){
-
-              postActivity(input)
+              postAct(input)
             }else{
               alert("debe tener  nombre con al menos 3 caracteres")
             }
@@ -105,12 +94,14 @@ const Activity = ({getCountries,postActivity}) => {
           value={input.difficulty}
           handleChange={handleChangeDifficulty}
         />
-        <Form
-          label="Ingrese estacion"
-          name="station"
-          value={input.station}
-          handleChange={handleChangeStation}
-        />
+        <p>Seleccione una estacion</p>
+        <select name="station" onChange={handleChangeStation}>
+          <option value="null">---</option>
+          <option value="Invierno">Invierno</option>
+          <option value="Verano">Verano</option>
+          <option value="Otoño">Otoño</option>
+          <option value="Primavera">Primavera</option>
+        </select>
         <Form
           label="Ingrese duracion de la actividad"
           name="duration"
@@ -154,13 +145,5 @@ const Form = ({ label, name, value, handleChange }) => {
     </div>
   );
 };
-export const validate = function (input) {
-  let errors = {}; 
-  if (!input.difficulty) {
-    errors.difficulty = "necesita una dificultad";
-  } else if (input.difficulty>1||input.difficulty>5) {
-    errors.difficulty = "dificultad invalida , solo acepta de 1 a 5";
-  }
-  return errors;
-};
+
 export default connect(null,{getCountries,postActivity})(Activity)

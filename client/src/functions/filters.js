@@ -51,21 +51,28 @@ export function filterOrderArea(countries, flag) {   // ordenador por area
     }
 
 }
-export async function filterByCOA(countries, filter) {//filtro por continente o actividad
-    if (filter !== null) {
-        if (countries.length > 220) {
-            let result = [];
-            result = await countries.filter((e) => e.continent === filter);
-            return result;
+export async function filterByC(countries, filter, flag) {//filtro por continente o actividad
+
+    if (filter !== "filtrar por continente") {
+        if (flag === 0) {
+            if (countries.length > 220) {
+                let result = [];
+                result = await countries.filter((e) => e.continent === filter);
+                return result;
+            }
+            else {
+                let result = [];
+                result = await getAll();
+                return result.data.filter((e) => e.continent === filter);
+            }
         }
         else {
-            let result = [];
-            result = await getAll();
-            return result.data.filter((e) => e.continent === filter);
+            countries = [...countries.filter((e) => e.continent === filter)]
+            if (countries.length > 0) return countries
+            alert("no existen paises con esas indicaciones")
         }
     } else {
         let result = [];
-        console.log("asd")
         result = await getAll();
         return result.data;
     }
@@ -83,7 +90,6 @@ export async function filterByAct(filter, countriesLoaded, activities, dispatch)
                 countries.push(aux)
             }
         }
-
         if (countries.length > 0) {
             dispatch({
                 type: COUNTRIES,
@@ -92,6 +98,12 @@ export async function filterByAct(filter, countriesLoaded, activities, dispatch)
         }
         else {
             alert("no encontramos paises con esas indicaciones")
+            let result = [];
+            result = await getAll();
+            dispatch({
+                type: COUNTRIES,
+                payload: result.data
+            })
         }
     } else {
         let result = [];

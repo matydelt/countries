@@ -16,9 +16,7 @@ const [clearAll,setClearAll]= useState(0);
 useEffect(() => {
   getCountries()  
 },[clearAll, getCountries])
-
-
-if(countries.length<=0) {
+if(!Array.isArray(countries)) {  
   getCountries()  
   return (<h2>Loading...</h2>)};
   

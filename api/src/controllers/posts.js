@@ -5,6 +5,7 @@ const { TouristActivity } = require("../db")
 
 async function addActivity(req, res) {
     const { name, difficulty, duration, station, countryId } = req.body
+    console.log(name, difficulty, duration, station, countryId)
     try {
         if (Array.isArray(countryId)) {
             if (countryId.length > 0) {
@@ -14,6 +15,7 @@ async function addActivity(req, res) {
                     const country = await Country.findOne({ where: { id: id } });
                     if (country)
                         country.addTouristActivities(touristActivity)
+                    return res.sendStatus(200)
                 }
             }
         }
@@ -22,10 +24,10 @@ async function addActivity(req, res) {
         const country = await Country.findOne({ where: { id: id } });
         if (country)
             country.addTouristActivities(touristActivity)
-        res.sendStatus(302)
+        return res.sendStatus(200)
     }
     catch (error) {
-        res.status(500).send(error)
+        return res.status(500).send(error)
     }
 
 }
