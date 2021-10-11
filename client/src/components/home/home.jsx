@@ -32,7 +32,7 @@ if(!Array.isArray(countries)) {
   const paginate = countryNumber => setCurrentPage(countryNumber);
   return (
     <div className="principal">
-      <div className="columnLeft"></div>    
+        
       <Nav countries={currentCountries} a={setClearAll}b={clearAll}/>
       <Pagination
         countriesPerPage={countriesPerPage}
@@ -40,7 +40,7 @@ if(!Array.isArray(countries)) {
         paginate={paginate}
       />
       <Cards countries={currentCountries} />
-      <div className="columnRigth"></div>
+      
     </div>
   );
 };

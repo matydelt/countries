@@ -1,20 +1,35 @@
 import React, { useState } from "react";
 import { COUNTRIES } from "../../redux/actions";
 import { connect, useDispatch } from "react-redux";
-import { filterByC, filterOrderName, filterOrderArea,filterByAct } from "../../functions/filters";
+import { filterByC, filterOrderName, filterOrderArea,filterByAct,filterByName } from "../../functions/filters";
 import "./nav.css";
 import { Link } from "react-router-dom";
 
 export const Nav = (props) => {
+    const [name,setName] = useState("")
    const [flag, setFlag] = useState(0)
     const dispatch = useDispatch();
     let order = false
     let orderByArea = false
+    const handleChangeName=(e)=>{
+        const newInput = { ...name, name: e.target.value};
+        setName(newInput);
+    }
+    const handleSubmit= (e)=>{
+        e.preventDefault();
+        const result=filterByName(name.name,props.countries)
+        if(result.length>0){
+       dispatch({
+           type:COUNTRIES,
+           payload:result
+       })}
+       else alert("no se encontro pais con ese nombre")            
+    }
     const handleSubmitAct = (e)=>{ 
         setFlag(1) 
         filterByAct(e.target.value,props.countries,props.activities,dispatch)        
     }
-    const  handleSubmit =async (e) => {
+    const  handleChange =async (e) => {
         e.preventDefault()
         let countries = [];        
         countries = await filterByC(props.countries, e.target.value,flag) 
@@ -79,9 +94,12 @@ export const Nav = (props) => {
 
             <img  src="https://i.ibb.co/QHLJ2CL/logoOG.png" width="20%" height="20%" alt=""/>
             <h2>Henry Countries</h2>
+            <form onSubmit={handleSubmit}>
+            <input onChange={handleChangeName} name="name"/> <input type="submit" value="Search"/>
+            </form>
             </div>
             
-                <select onChange={handleSubmit}>
+                <select onChange={handleChange}>
                     <option value={null} >filtrar por continente</option>
                     <option  value="Africa">Africa</option>
                     <option  value="Antarctic">Antarctic</option>

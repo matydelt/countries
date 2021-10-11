@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getCountries,postActivity } from "../../redux/actions";
+import { getCountries } from "../../redux/actions";
 import "./activity.css";
 import { postAct } from "../../functions/api";
 
 
-const Activity = ({getCountries,postActivity}) => {
+const Activity = ({getCountries}) => {
   const countries = useSelector(state=> state.countriesLoaded)
 //   console.log(props)
   const [input, setInput] = useState({
@@ -146,4 +146,4 @@ const Form = ({ label, name, value, handleChange }) => {
   );
 };
 
-export default connect(null,{getCountries,postActivity})(Activity)
+export default connect(null,{getCountries})(Activity)
