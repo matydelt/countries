@@ -33,10 +33,11 @@ const Activity = ({getCountries}) => {
       // eslint-disable-next-line no-mixed-operators
       if(e.target.value>5 && e.target.value!==""||e.target.value<1&&e.target.value!=="")alert("solo se aceptan valores de 1 a 5")
       else{
+        if(!/[^a-zA-Z]\d{1,2}/gi.test(newInput))
           setInput(newInput);
       }
       
-  };
+    };
   const handleChangeStation = (e) => {
     const newInput = { ...input, [e.target.name]: e.target.value };
     setInput(newInput);
@@ -86,12 +87,14 @@ const Activity = ({getCountries}) => {
           name="name"
           value={input.name}
           handleChange={handleChangeName}
+          type="text"
         />
         <Form
           key="difficulty"
           label="Ingrese dificultad"
           name="difficulty"
           value={input.difficulty}
+          type="number"
           handleChange={handleChangeDifficulty}
         />
         <p>Seleccione una estacion</p>
@@ -107,6 +110,7 @@ const Activity = ({getCountries}) => {
           name="duration"
           value={input.duration}
           handleChange={handleChangeDuration}
+          type="text"
         />
         <div>          
           <label>ingrese pais</label>
@@ -132,11 +136,12 @@ const Activity = ({getCountries}) => {
     
   );
 };
-const Form = ({ label, name, value, handleChange }) => {
+const Form = ({ label, name, value, handleChange,type }) => {
   return (
     <div className="div-inp">
       <label>{label}</label>
       <input
+        type={type}
         name={name}
         value={value}
         onChange={handleChange}

@@ -1,4 +1,3 @@
-import { getAll } from "./api";
 import { COUNTRIES } from "../redux/actions";
 export function filterOrderName(countries, flag) { // ordenador por nombre
     if (flag) {
@@ -51,7 +50,7 @@ export function filterOrderArea(countries, flag) {   // ordenador por area
     }
 
 }
-export async function filterByC(countries, filter, flag) {//filtro por continente o actividad
+export async function filterByC(countries, filter, flag, countriesL) {//filtro por continente o actividad  countriesL=countries por defecto
 
     if (filter !== "filtrar por continente") {
         if (flag === 0) {
@@ -62,8 +61,8 @@ export async function filterByC(countries, filter, flag) {//filtro por continent
             }
             else {
                 let result = [];
-                result = await getAll();
-                return result.data.filter((e) => e.continent === filter);
+                result = [...countriesL]
+                return result.filter((e) => e.continent === filter);
             }
         }
         else {
@@ -73,13 +72,13 @@ export async function filterByC(countries, filter, flag) {//filtro por continent
         }
     } else {
         let result = [];
-        result = await getAll();
-        return result.data;
+        result = [...countriesL]
+        return result;
     }
 }
 
 
-export async function filterByAct(filter, countriesLoaded, activities, dispatch) {
+export async function filterByAct(filter, countriesLoaded, activities, dispatch, countriesL) {
     if (filter !== "filtrar por Actividad turistica") {
         let activity = activities.find(e => e.id === parseInt(filter))
         let countriesId = activity.countries.map(e => e.id)
@@ -99,22 +98,23 @@ export async function filterByAct(filter, countriesLoaded, activities, dispatch)
         else {
             alert("no encontramos paises con esas indicaciones")
             let result = [];
-            result = await getAll();
+            result = [...countriesL];
             dispatch({
                 type: COUNTRIES,
-                payload: result.data
+                payload: result
             })
         }
     } else {
         let result = [];
-        result = await getAll();
+        result = [...countriesL];
         dispatch({
             type: COUNTRIES,
-            payload: result.data
+            payload: result
         })
     }
 }
 
 export function filterByName(filter, countries) {
+    console.log(filter)
     return countries = [...countries.filter(e => e.name.toLowerCase() === filter.toLowerCase())]
 }

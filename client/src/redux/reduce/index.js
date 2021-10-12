@@ -1,6 +1,7 @@
-import { COUNTRIES, ACTIVITIES, COUNTRY } from "../actions"
+import { COUNTRIES, ACTIVITIES, COUNTRY, COUNTRIESL } from "../actions"
 const initialState = {
     countriesLoaded: [],
+    countries: [],
     activitiesLoaded: [],
     country: ""
 };
@@ -11,6 +12,11 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 countriesLoaded: action.payload
+            }
+        case COUNTRIESL:
+            return {
+                ...state,
+                countries: action.payload
             }
         case ACTIVITIES:
             return {

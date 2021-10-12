@@ -2,6 +2,7 @@ import { getAll, getActivities, getById, postAct } from "../../functions/api"
 export const COUNTRIES = 'GET_COUNTRIES';
 export const ACTIVITIES = 'GET_ACTIVITIES';
 export const COUNTRY = "GET_COUNTRY";
+export const COUNTRIESL = "SET_COUNTRIES"
 
 export const getCountries = () => {
     return async function (dispatch) {
@@ -15,6 +16,10 @@ export const getCountries = () => {
         dispatch({
             type: ACTIVITIES,
             payload: act.data
+        })
+        dispatch({
+            type: COUNTRIESL,
+            payload: result
         })
     }
 }
