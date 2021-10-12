@@ -1,5 +1,5 @@
 {
-  "name": "cp-m2",
+  "name": "countries-pi",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,7 +18,9 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
-    "simple-git": "^2.37.0"
+    "redux-thunk": "^2.3.0",
+    "simple-git": "^2.37.0",
+    "web-vitals": "^2.1.2"
   },
   "scripts": {
     "build": "react-scripts build",

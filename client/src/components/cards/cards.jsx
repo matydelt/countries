@@ -12,8 +12,8 @@ export default function Cards({ countries }) {
               <h4  >{countries.name}</h4>
             </Link>          
             <div >            
-              <div>              
-                <p>{countries.continent}</p>
+              <div>               
+                <p>{countries.continent}</p> 
               </div>
               <div >
                 <img  src={countries.nationalFlag}  alt="" />

@@ -104,7 +104,7 @@ export const Nav = (props) => {
         <h2>Henry Countries</h2>
         <form onSubmit={handleSubmit}>
           <input onChange={handleChangeName} name="name" />
-          <input t type="submit" value="Search" />
+          <input type="submit" value="Search" />
         </form>
       </div>
       <select onChange={handleChange}>
