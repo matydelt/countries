@@ -115,6 +115,5 @@ export async function filterByAct(filter, countriesLoaded, activities, dispatch,
 }
 
 export function filterByName(filter, countries) {
-    console.log(filter)
     return countries = [...countries.filter(e => e.name.toLowerCase() === filter.toLowerCase())]
 }

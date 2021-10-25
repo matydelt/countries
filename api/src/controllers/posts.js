@@ -5,7 +5,6 @@ const { TouristActivity } = require("../db")
 
 async function addActivity(req, res) {
     const { name, difficulty, duration, station, countryId } = req.body
-    console.log(name, difficulty, duration, station, countryId)
     try {
         if (Array.isArray(countryId)) {
             if (countryId.length > 0) {

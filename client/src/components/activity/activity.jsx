@@ -77,7 +77,6 @@ const Activity = ({ getCountries }) => {
     // setError({ error, "countries": "" })
   };
   const handleSubmit = (e) => {
-    console.log(input)
     e.preventDefault()
     if (input.duration !== "" || input.name !== "" || input.difficulty !== "" || input.station !== "" || input.countries.length > 0) {
       if (input.name !== "") {

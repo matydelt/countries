@@ -39,7 +39,6 @@ async function addToDb(res) {
     axios.get('https://restcountries.com/v3/all')
         .then(async function (response) {
             const data = response.data;
-            console.log(data[0].name)
             if (response) {
                 for (let i = 0; i < response.data.length; i++) {
                     if (data[i]["capital"] && data[i].hasOwnProperty("capital")) {
