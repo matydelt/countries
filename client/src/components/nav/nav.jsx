@@ -40,7 +40,7 @@ export const Nav = (props) => {
   const handleChange = async (e) => {
     e.preventDefault();
     let countries = [];
-    countries = await filterByC(props.countries, e.target.value, flag, props.countriesL);
+    countries = await filterByC(props.countries, e.target.value, flag, props.countriesL,dispatch);
     dispatch({
       type: COUNTRIES,
       payload: countries,
@@ -85,13 +85,13 @@ export const Nav = (props) => {
   return (
     <div className="div-nav">
       <Link to="/activity">
-        <button>Crear actividad</button>
+        <button className="btn-nav">Crear actividad</button>
       </Link>
-      <button onClick={handleOnClickAreaAs}>ordered by area ↥</button>
-      <button onClick={handleOnClickAreaDes}>ordered by area ↧</button>
-      <button onClick={handleOnClickAToZ}>A-Z</button>
-      <button onClick={handleOnClickZToA}>Z-A</button>
-      <button onClick={() => props.a(props.b + 1, setFlag(0))}>
+      <button className="btn-nav" onClick={handleOnClickAreaAs}>ordered by area ↥</button>
+      <button className="btn-nav" onClick={handleOnClickAreaDes}>ordered by area ↧</button>
+      <button className="btn-nav" onClick={handleOnClickAToZ}>A-Z</button>
+      <button className="btn-nav" onClick={handleOnClickZToA}>Z-A</button>
+      <button className="btn-nav" onClick={() => props.a(props.b + 1, setFlag(0))}>
         Clear All
       </button>
       <div>
@@ -104,7 +104,7 @@ export const Nav = (props) => {
         <h2>Henry Countries</h2>
         <form onSubmit={handleSubmit}>
           <input onChange={handleChangeName} name="name" />
-          <input t type="submit" value="Search" />
+          <input  type="submit" value="Search" className="btn-nav"/>
         </form>
       </div>
       <select onChange={handleChange}>

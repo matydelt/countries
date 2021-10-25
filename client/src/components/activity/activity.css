@@ -3,7 +3,7 @@
     margin: 2rem;
     display: table-caption;
     mix-blend-mode: hard-light;
-    color: yellow;
+    margin-left: 130%;
 }
 .inp{
     height: 30px;
@@ -36,4 +36,12 @@
     background-color: dimgrey;
     mix-blend-mode: hard-light;
     color: yellow;
+}
+label{
+    color: yellow;
+}
+.text-danger{
+    /* font-family: ; */
+    font-size: large;
+    color: red;
 }

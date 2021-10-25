@@ -13,6 +13,7 @@ function App() {
     <div className="App">
       <Route path="/country/:id" render={() => (<About />)} />
       <Route path="/countries" exact render={() => (<Landing />)} />
+      <Route path="/" exact render={() => (<Landing />)} />
       <Route path="/home" strict render={() => (<Home getCountries={getCountries} />)} />
       <Route path="/activity" strict render={() => (<Activity />)} />
     </div>
