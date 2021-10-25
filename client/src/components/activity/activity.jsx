@@ -159,6 +159,7 @@ const Activity = ({ getCountries }) => {
         <h6 className="text-danger">{error.duration}</h6>
         <div>
           <label>ingrese pais</label>
+          <br></br>
           <select className="form-select form-select-lg mb-3" onChange={handleChangeCountry}>
             <option value={null}>eliga un pais</option>
             {countries.map((e) => { return (<option key={e.id} value={e.id}>{e.name}</option>) })}
